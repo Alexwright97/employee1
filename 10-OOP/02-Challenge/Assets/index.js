@@ -71,11 +71,23 @@ function menu(){
                     message:"Choose the following manager",
                     choices:managerData
                 }
+                {
+                    type:"list",
+                    name:"engineer_id",
+                    message:"Choose the following engineer",
+                    choices:engineerData
+                }
+                {
+                    type:"list",
+                    name:"intern_id",
+                    message:"Choose the following intern",
+                    choices:internData
+                }
             
             ]
             inquirer.prompt(employeeAddQuestions).then(response=>{
-                const parameters=[response.first_name,response.last_name,response.role_id, response.manager_id]
-                db.query("INSERT INTO employee (first_name,last_name,role_id,manager_id)VALUES(?,?,?,?)",parameters,(err, data)=>{
+                const parameters=[response.first_name,response.last_name,response.role_id, response.manager_id, response.engineer_id,response.intern_id]
+                db.query("INSERT INTO employee (first_name,last_name,role_id,manager_id,engineer_id,intern_id)VALUES(?,?,?,?,?,?)",parameters,(err, data)=>{
 
                     viewEmployees()
                 })
